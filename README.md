@@ -9,7 +9,14 @@ Upon detecting that the charger is delivering more than 10W, it displays an anim
 ## ⚠️ Integration Requirements (IMPORTANT!)
 For the app to function correctly and access system permissions (SELinux), you must follow these steps during the ROM build process:
 
-### 1. SELinux Configuration
+### 1. Remember add package to Device.mk
+Go to `device/<vendor>/<device>/device.mk` and add line:
+```makefile
+# Set build indication
+PRODUCT_PACKAGES += \TurboChargeOverlay
+```
+
+### 2. SELinux Configuration
 The app requires specific security policies. To ensure the compiler does not ignore them, you must declare them in your `BoardConfig.mk` file (usually located at `device/<brand>/<model>/BoardConfig.mk`):
 
 ```makefile

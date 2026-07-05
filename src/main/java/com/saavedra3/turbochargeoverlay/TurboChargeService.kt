@@ -22,10 +22,16 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_LOW
+import android.content.pm.ServiceInfo
 
 class TurboChargeService : Service() {
 
     private val DEVELOPER = "@saavedra3"
+    private val NOTIFICATION_ID = 1001
     private val TAG = "TurboChargeOverlay"
     private var overlayView: View? = null
 
@@ -73,6 +79,30 @@ class TurboChargeService : Service() {
         super.onCreate()
         Log.d(TAG, "¡El servicio inicio")
         Log.d(TAG, "TurboChargeOverlay v1.0 | Dev: $DEVELOPER")
+
+
+
+        // por seguridad de android necesito un Foreground Service y para eso creamos una notificacion
+        val channelId = "turbo_charge_channel"
+        val manager = getSystemService(NotificationManager::class.java)
+
+        //le damos bajita prioridad
+        val channel = NotificationChannel(channelId, "TurboCharge Monitor", IMPORTANCE_LOW)
+        manager.createNotificationChannel(channel)
+
+        val notification = Notification.Builder(this, channelId)
+            .setContentTitle("TurboCharge")
+            .setContentText("Monitoring charging status...")
+            .setSmallIcon(android.R.drawable.ic_lock_power_off) //uso cualquier icono
+            .build()
+
+        startForeground(
+            NOTIFICATION_ID,
+            notification,
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+        )
+        // --------------------------
+
 
         // detector de batería para que siempre esté escuchando
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)

@@ -1,0 +1,20 @@
+type turbocharge_app, domain;
+app_domain(turbocharge_app)
+
+# Permitir dibujar sobre otras apps (SYSTEM_ALERT_WINDOW)
+allow turbocharge_app system_server:binder { call transfer };
+allow turbocharge_app surfaceflinger:binder { call transfer };
+
+# Permitir leer información de batería del sistema
+allow turbocharge_app sysfs_batteryinfo:dir r_dir_perms;
+allow turbocharge_app sysfs_batteryinfo:file r_file_perms;
+
+# Permitir comunicación con el WindowManager
+allow turbocharge_app system_app:binder { call transfer };
+
+# Permisos para acceder a los archivos de datos de la app
+allow turbocharge_app privapp_data_file:dir create_dir_perms;
+allow turbocharge_app privapp_data_file:file create_file_perms;
+
+# Permitir leer las propiedades del sistema
+get_prop(turbocharge_app, hwservicemanager_prop)

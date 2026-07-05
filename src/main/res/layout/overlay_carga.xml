@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:background="#CC000000"> <!-- fondo al 70% -->
+
+<FrameLayout
+    android:id="@+id/contenedor_particulas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+<!-- resplandor -->
+<ImageView
+    android:id="@+id/resplandor_central"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_gravity="center"
+    android:src="@drawable/bg_resplandor" />
+
+<!-- logo y textos -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/logo_personalizado"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:src="@drawable/new_turbopower_logo" /> <!-- Imagen temporal -->
+
+    <TextView
+        android:id="@+id/texto_porcentaje"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:text="65%"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/texto_watts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="33W"
+        android:textColor="#FFF"
+        android:textSize="26sp" />
+</LinearLayout>
+
+</FrameLayout>

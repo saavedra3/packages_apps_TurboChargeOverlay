@@ -1,0 +1,7 @@
+# Gitignore para proyectos Android
+.gradle/
+build/
+.idea/
+*.iml
+local.properties
+.DS_Store

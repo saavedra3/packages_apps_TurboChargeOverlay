@@ -1,0 +1,12 @@
+android_app {
+    name: "TurboChargeOverlay",
+    srcs: ["src/main/java/**/*.kt"],
+    resource_dirs: ["src/main/res"],
+    platform_apis: true,
+    privileged: true,
+    certificate: "platform",
+    manifest: "AndroidManifest.xml",
+    optimize: {
+        enabled: false,
+    },
+}
